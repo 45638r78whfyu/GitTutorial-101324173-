@@ -1,24 +1,24 @@
 #include "File.h"
+#include <iostream>
 
-// Constructor
-File::File(string name, string content, Date& date) : name(name), content(content), lastModified(date) {
-    // Initialization done using member initializer list
-}
+// Constructor implementation
+File::File(const std::string& fileName, const std::string& fileContent, Date& date)
+    : name(fileName), content(fileContent), lastModified(date) {}
 
-// Function to compare dates using Date::lessThan()
+// lessThan() compares the lastModified Date with another file's lastModified date
 bool File::lessThan(File& otherFile) {
     return lastModified.lessThan(otherFile.lastModified);
 }
 
-// Print function to show file name and last modified date
+// Print file name and last modified date
 void File::print() {
-    cout << "File: " << name << " (Last Modified: ";
+    std::cout << "File: " << name << ", Last Modified: ";
     lastModified.print();
-    cout << ")" << endl;
+    std::cout << std::endl;
 }
 
-// Print the file's metadata and its content
+// Print file name, last modified date, and content
 void File::printContents() {
-    print();  // Print the file metadata (name and date)
-    cout << "Content: " << endl << content << endl;  // Print the content of the file
+    print(); // Call the print function to show metadata
+    std::cout << "Content: " << content << std::endl;
 }
